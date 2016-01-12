@@ -1,0 +1,82 @@
+<!--
+Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+
+openAUSIAS: The stunning micro-library that helps you to develop easily 
+            AJAX web applications by using Java and jQuery
+openAUSIAS is distributed under the MIT License (MIT)
+Sources at https://github.com/rafaelaznar/
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+-->
+<div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
+<div class="panel-body">
+    <div class="row-fluid">
+        <div class="span6 offset3">      
+            <div ng-show="!result.status">
+                <table class="table table-striped table-condensed">
+                    <thead>                
+                        <tr>    
+                            <th>campo</th>
+                            <th>valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Identificador</td><td>{{bean.id}}</td></tr>       
+                        <tr><td>Login</td><td>{{bean.login}}</td></tr> 
+                        <tr><td>Password</td><td>{{bean.password}}</td></tr> 
+                        <tr>
+                        <td>estado del usuario</td>
+                        <td>
+                            <a href="#/tipousuario/view/{{bean.obj_estado.id}}">{{bean.obj_estado.tipo}}</a>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td>tipo de usuario</td>
+                        <td>
+                            <a href="#/tipousuario/view/{{bean.obj_tipousuario.id}}">{{bean.obj_tipousuario.descripcion}}</a>
+                        </td>
+                    </tr>
+                        <tr><td>Ciudad</td><td>{{bean.ciudad}}</td></tr> 
+                        <tr><td>Firma</td><td>{{bean.firma}}</td></tr> 
+                        <tr><td>Skin</td><td>{{bean.skin}}</td></tr> 
+                    </tbody>
+                </table>  
+                <div class="text-right" > 
+                    <div>¿Está seguro de que desea borrar el usuario?</div>
+                    <a class="btn btn-danger" ng-click="remove()">Si</a>
+                    <a class="btn btn-default" ng-click="back()">No</a>
+                </div>     
+            </div>
+            <div ng-show="result.status == 200">
+                <br>
+                <h2  ng-show="result.message == 0" class="alert alert-success">No se ha podido eliminar el usuario</h2>
+                <h2  ng-show="result.message == 1" class="alert alert-success">Se ha eliminado el registro</h2>
+                <a class="btn btn-default" ng-click="back()">Volver</a>
+            </div>
+            <div ng-show="result.status && !result.status == 200">
+                <br>
+                <h2>Error al eliminar el usuario</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/footer.html'"></div>
+
+
